@@ -87,6 +87,14 @@ fi
 # Install ghq
 # https://github.com/x-motemen/ghq
 
+if ! type unzip &>/dev/null; then
+	if [[ "${AP_OS_TYPE}" == "${AP_OS_TYPE_MACOS}" ]]; then
+		brew install unzip
+	elif [[ "${AP_OS_TYPE}" == "${AP_OS_TYPE_UBUNTU}" ]]; then
+		sudo apt install -y unzip
+	fi
+fi
+
 if ! type ghq &>/dev/null; then
 	echo "Installing ghq..."
 
