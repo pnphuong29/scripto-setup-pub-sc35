@@ -87,7 +87,10 @@ fi
 # Clone SC28 project
 export AP_PRJ_SC28_DIR="${AP_GH_PNP29_DIR}/ap-scripts-common-sc28"
 zghpnp29
-git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
+
+if [[ ! -d "${AP_PRJ_SC28_DIR}" ]]; then
+	git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
+fi
 
 # Clone <scripts> project basing on input param $1
 if [[ -n "${1:-}" ]]; then
