@@ -84,29 +84,18 @@ if [ ! -d "${AP_GH_PNP29_DIR}" ]; then
 	mkdir -p "${AP_GH_PNP29_DIR}"
 fi
 
-# Install ghq
-# https://github.com/x-motemen/ghq
+# Clone SC28 project
+export AP_PRJ_SC28_DIR="${AP_GH_PNP29_DIR}/ap-scripts-common-sc28"
+zghpnp29
+git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
 
-if ! type unzip &>/dev/null; then
-	if [[ "${AP_OS_TYPE}" == "${AP_OS_TYPE_MACOS}" ]]; then
-		brew install unzip
-	elif [[ "${AP_OS_TYPE}" == "${AP_OS_TYPE_UBUNTU}" ]]; then
-		sudo apt install -y unzip
-	fi
+# Clone <scripts> project basing on input param $1
+if [[ -n "${1:-}" ]]; then
+	git clone "https://github.com/pnphuong29/${1}.git"
 fi
 
-if ! type ghq &>/dev/null; then
-	echo "Installing ghq..."
-
-	ap_os_type="linux"
-	if [[ "${AP_OS_TYPE}" == "${AP_OS_TYPE_MACOS}" ]]; then
-		ap_os_type="darwin"
-	fi
-
-	curl -L "https://github.com/x-motemen/ghq/releases/download/v1.2.1/ghq_${ap_os_type}_amd64.zip" -o "${AP_TMP_DIR}/ghq.zip"
-	rm -rf "${AP_SOFT_DIR}/ghq" # Remove old ghq
-	unzip -jqo "${AP_TMP_DIR}/ghq.zip" -d "${AP_SOFT_DIR}/ghq"
+if [[ -d "${1:-}" ]]; then
+	export AP_PRJ_SCRIPTS_DIR="${AP_GH_PNP29_DIR}/${1}"
+	cd "${AP_PRJ_SCRIPTS_DIR}"
+	source "${AP_PRJ_SCRIPTS_DIR}/ap_master.sh"
 fi
-
-export GHQ_ROOT="${AP_PRJ_DIR}"
-export PATH="${AP_SOFT_DIR}/ghq:${PATH}"
