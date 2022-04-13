@@ -64,7 +64,6 @@ export AP_LOGS_ERROR_FILE="${AP_LOGS_DIR}/general/error.log"
 
 # Create error log file & open file descriptor 7 linking to that error log file
 [[ ! -f "${AP_LOGS_ERROR_FILE}" ]] && printf "" >"${AP_LOGS_ERROR_FILE}"
-exec 7<>"${AP_LOGS_ERROR_FILE}"
 
 # Projects
 export AP_PRJ_DIR="${AP_HOME_DIR}/projects"
@@ -86,8 +85,6 @@ fi
 
 # Clone SC28 project
 export AP_PRJ_SC28_DIR="${AP_GH_PNP29_DIR}/ap-scripts-common-sc28"
-zghpnp29
-
-if [[ ! -d "${AP_PRJ_SC28_DIR}" ]]; then
-	git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
-fi
+rm -rf "${AP_PRJ_SC28_DIR}"
+cd "${AP_GH_PNP29_DIR}"
+git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
