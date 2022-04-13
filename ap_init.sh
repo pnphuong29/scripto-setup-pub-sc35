@@ -40,14 +40,6 @@ if [ ! -d "${AP_TMP_DIR}" ]; then
 	mkdir -p "${AP_TMP_DIR}"
 fi
 
-# Keys
-export AP_KEYS_DIR="${AP_HOME_DIR}/keys"
-alias zkeys='cd "${AP_KEYS_DIR}"'
-
-if [ ! -d "${AP_KEYS_DIR}" ]; then
-	mkdir -p "${AP_KEYS_DIR}"
-fi
-
 # Logs
 export AP_LOGS_DIR="${AP_HOME_DIR}/logs"
 alias zlogs='cd "${AP_LOGS_DIR}"'
@@ -55,15 +47,6 @@ alias zlogs='cd "${AP_LOGS_DIR}"'
 if [ ! -d "${AP_LOGS_DIR}/general" ]; then
 	mkdir -p "${AP_LOGS_DIR}/general"
 fi
-
-export AP_LOGS_GENERAL_FILE="${AP_LOGS_DIR}/general/main.log"
-export AP_LOGS_ERROR_FILE="${AP_LOGS_DIR}/general/error.log"
-
-# Create general log file if not existed
-[[ ! -f "${AP_LOGS_GENERAL_FILE}" ]] && printf "" >"${AP_LOGS_GENERAL_FILE}"
-
-# Create error log file & open file descriptor 7 linking to that error log file
-[[ ! -f "${AP_LOGS_ERROR_FILE}" ]] && printf "" >"${AP_LOGS_ERROR_FILE}"
 
 # Projects
 export AP_PRJ_DIR="${AP_HOME_DIR}/projects"
@@ -76,6 +59,7 @@ if [ ! -d "${AP_GH_DIR}" ]; then
 	mkdir -p "${AP_GH_DIR}"
 fi
 
+# GitHub pnphuong29
 export AP_GH_PNP29_DIR="${AP_PRJ_DIR}/pnphuong29.github.com/pnphuong29"
 alias zghpnp29='cd "${AP_GH_PNP29_DIR}"'
 
@@ -83,7 +67,7 @@ if [ ! -d "${AP_GH_PNP29_DIR}" ]; then
 	mkdir -p "${AP_GH_PNP29_DIR}"
 fi
 
-# Clone SC28 project
+# SC28
 export AP_PRJ_SC28_DIR="${AP_GH_PNP29_DIR}/ap-scripts-common-sc28"
 rm -rf "${AP_PRJ_SC28_DIR}"
 cd "${AP_GH_PNP29_DIR}"
