@@ -91,14 +91,3 @@ zghpnp29
 if [[ ! -d "${AP_PRJ_SC28_DIR}" ]]; then
 	git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
 fi
-
-# Clone <scripts> project basing on input param $1
-if [[ -n "${1:-}" ]]; then
-	git clone "https://github.com/pnphuong29/${1}.git"
-fi
-
-if [[ -d "${1:-}" ]]; then
-	export AP_PRJ_SCRIPTS_DIR="${AP_GH_PNP29_DIR}/${1}"
-	cd "${AP_PRJ_SCRIPTS_DIR}"
-	source "${AP_PRJ_SCRIPTS_DIR}/ap_master.sh"
-fi
