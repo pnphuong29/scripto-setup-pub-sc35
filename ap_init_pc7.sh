@@ -1,4 +1,4 @@
-eval "$(curl -SsL https://raw.githubusercontent.com/pnphuong29/ap-scripts-public-sc35-pub7/master/ap_init.sh)"
+source <(curl -SsL https://raw.githubusercontent.com/pnphuong29/ap-scripts-public-sc35-pub7/master/ap_init.sh)
 
 export AP_PRJ_SCRIPTS_DIR="${AP_GH_PNP29_DIR}/ap-scripts-pc7-sc21"
 rm -rf "${AP_RPJ_SCRIPTS_DIR}"
