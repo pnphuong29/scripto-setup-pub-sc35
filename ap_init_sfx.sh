@@ -8,7 +8,7 @@ time {
 	rm -rf "${AP_PRJ_SCRIPTS_DIR}"
 
 	git clone "https://github.com/pnphuong29/${ap_prj_scripts_name}.git"
-	source "${AP_PRJ_SCRIPTS_DIR}/ap_setup_vendors.sh"
 
-	cat "${AP_LOGS_DIR}/general/ap_setup_vendors.log"
+	source "${AP_PRJ_SC28_DIR}/vendors/common-apps/ap_setup_common_apps.sh"
+	source "${AP_PRJ_SCRIPTS_DIR}/ap_master.sh"
 }
