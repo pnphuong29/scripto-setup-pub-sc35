@@ -1,6 +1,8 @@
+# @#bash-snippets $$ measure execution time
 TIMEFORMAT="It took [%R] seconds to execute this script"
 time {
 	export AP_GH_PNP29_DIR="${HOME}/pnphuong29/projects/pnphuong29.github.com/pnphuong29"
+	mkdir -p "${AP_GH_PNP29_DIR}"
 
 	# SC28
 	export AP_PRJ_SC28_DIR="${AP_GH_PNP29_DIR}/ap-scripts-common-sc28"
