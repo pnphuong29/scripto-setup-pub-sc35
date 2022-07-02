@@ -6,16 +6,16 @@ time {
 
 	# SC28
 	export AP_PRJ_SC28_DIR="${AP_GH_PNP29_DIR}/ap-scripts-common-sc28"
-	rm -rf "${AP_PRJ_SC28_DIR}"
-	cd "${AP_GH_PNP29_DIR}"
-	git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
+	#rm -rf "${AP_PRJ_SC28_DIR}"
+	#cd "${AP_GH_PNP29_DIR}"
+	#git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
 
 	# SC7
 	ap_prj_scripts_name="ap-scripts-macos-sc7"
 	export AP_PRJ_SCRIPTS_DIR="${AP_GH_PNP29_DIR}/${ap_prj_scripts_name}"
-	rm -rf "${AP_PRJ_SCRIPTS_DIR}"
-	cd "${AP_GH_PNP29_DIR}"
-	git clone "https://github.com/pnphuong29/${ap_prj_scripts_name}.git"
+	#rm -rf "${AP_PRJ_SCRIPTS_DIR}"
+	#cd "${AP_GH_PNP29_DIR}"
+	#git clone "https://github.com/pnphuong29/${ap_prj_scripts_name}.git"
 
 	# Setup apps
 	source "${AP_PRJ_SC28_DIR}/ap_setup_vendors.sh"
