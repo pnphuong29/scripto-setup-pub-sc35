@@ -4,6 +4,15 @@ time {
 	export AP_GH_PNP29_DIR="${HOME}/pnphuong29/projects/pnphuong29.github.com/pnphuong29"
 	mkdir -p "${AP_GH_PNP29_DIR}"
 
+	# Install homebrew
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+	# Install latest git
+	brew install git
+
+	# Install latest bash (>= 5.x)
+	brew install bash
+
 	# SC28
 	export AP_PRJ_SC28_DIR="${AP_GH_PNP29_DIR}/ap-scripts-common-sc28"
 	#rm -rf "${AP_PRJ_SC28_DIR}"
