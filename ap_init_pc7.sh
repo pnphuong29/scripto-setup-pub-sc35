@@ -4,7 +4,6 @@
 
 # Prerequisites
 # - Bash >= 5.x
-# - Git >= 2.x
 
 # @#bash-snippets $$ measure execution time
 TIMEFORMAT="It took [%R] seconds to execute this script"
