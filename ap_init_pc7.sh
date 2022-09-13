@@ -1,10 +1,14 @@
+# Usage
+# - Download this script into any location owned by current user
+# - Run the command `source script_file_name.sh`
+
+# Prerequisites
+# - Bash >= 5.x
+# - Git >= 2.x
+
 # @#bash-snippets $$ measure execution time
 TIMEFORMAT="It took [%R] seconds to execute this script"
-time {
-	# Prerequisites
-	# Bash >= 5.x
-	# Git >= 2.x
-	
+time {	
 	export AP_GH_PNP29_DIR="${HOME}/pnphuong29/projects/pnphuong29.github.com/pnphuong29"
 	mkdir -p "${AP_GH_PNP29_DIR}"
 
