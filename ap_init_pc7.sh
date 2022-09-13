@@ -1,6 +1,10 @@
 # @#bash-snippets $$ measure execution time
 TIMEFORMAT="It took [%R] seconds to execute this script"
 time {
+	# Prerequisites
+	# Bash >= 5.x
+	# Git >= 2.x
+	
 	export AP_GH_PNP29_DIR="${HOME}/pnphuong29/projects/pnphuong29.github.com/pnphuong29"
 	mkdir -p "${AP_GH_PNP29_DIR}"
 
