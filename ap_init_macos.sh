@@ -21,6 +21,7 @@ time {
 	read -p "Please press [y] after you add private key: "
 	if [[ "${REPLY}" == 'y' ]]; then
 		ln -s ~/pnphuong29/one-drive/pnphuong29/OneDrive/keys/ap_pnphuong29.key.priv ~/pnphuong29/keys/ap_pnphuong29.key.priv
+		chmod 400 *.key.priv
 
 		cat <<-EOF >~/.ssh/config
 			# General
