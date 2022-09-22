@@ -6,10 +6,20 @@
 # - bash >= 5.x
 # - git >= 2.x
 # - curl
+# - wget
 
 # @#bash-snippets $$ measure execution time
 TIMEFORMAT="It took [%R] seconds to execute this script"
 time {
+	# Install essential/required apps
+	sudo apt-get update
+	sudo apt-get install \
+		git \
+		curl \
+		wget \
+		vim \
+		ssh
+
 	export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/p29-github/pnphuong29"
 	mkdir -p "${AP_GH_P29_DIR}"
 
