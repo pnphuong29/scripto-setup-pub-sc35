@@ -5,7 +5,6 @@
 # Prerequisites
 # - bash >= 5.x
 # - git >= 2.x
-# - curl
 # - wget
 
 # @#bash-snippets $$ measure execution time
@@ -15,7 +14,6 @@ time {
 	sudo apt-get update
 	sudo apt-get install \
 		git \
-		curl \
 		wget \
 		vim \
 		ssh
