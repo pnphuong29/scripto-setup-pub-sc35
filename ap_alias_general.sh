@@ -1,4 +1,5 @@
 # General
+alias zsc35='cd "${AP_PRJ_SC35_DIR}"'
 alias gplsc35='cd "${AP_PRJ_SC35_DIR}"; gpl'
 alias gacpsc35='cd "${AP_PRJ_SC35_DIR}"; gacp'
 
