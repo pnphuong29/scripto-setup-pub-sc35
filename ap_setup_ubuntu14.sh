@@ -42,7 +42,7 @@ time {
 	touch ~/pnphuong29/keys/ap_pnphuong29.key.priv
 	chmod 600 ~/pnphuong29/keys/ap_pnphuong29.key.priv
 
-	read -p "Please press [y] after you add private key: "
+	read -p "Please press [y] after you added private key: "
 	if [[ "${REPLY}" == 'y' ]]; then
 		cat <<-EOF >~/.ssh/config
 			# General

@@ -20,7 +20,7 @@ time {
 	mkdir -p ~/pnphuong29/keys
 	chmod 700 ~/pnphuong29/keys
 
-	read -p "Please press [y] after you add private key: "
+	read -p "Please press [y] after you added private key: "
 	if [[ "${REPLY}" == 'y' ]]; then
 		ln -s ~/pnphuong29/one-drive/pnphuong29/OneDrive/keys/ap_pnphuong29.key.priv ~/pnphuong29/keys/ap_pnphuong29.key.priv
 		chmod 400 *.key.priv
