@@ -44,7 +44,7 @@ time {
 				HostName github.com
 		EOF
 
-		chmod 700 ~/.ssh/config
+		chmod 600 ~/.ssh/config
 		chmod 600 ~/.ssh/authorized_keys
 
 		export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/p29-github/pnphuong29"
