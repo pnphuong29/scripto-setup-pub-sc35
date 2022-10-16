@@ -47,23 +47,7 @@ time {
 
 	read -p "Please press [y] after you added private key: "
 	if [[ "${REPLY}" == 'y' ]]; then
-		cat <<-EOF >~/.ssh/config
-			# General
-			Host *
-				IdentitiesOnly yes
-				IdentityFile ~/pnphuong29/keys/ap_pnphuong29.key.priv
-
-			Host p29-*
-				User git
-
-			# pnphuong29
-			Host p29-gitlab
-				HostName gitlab.com
-			 
-			Host p29-github
-				HostName github.com
-		EOF
-
+		cp -f ap_ssh.config ~/.ssh/config
 		chmod 600 ~/.ssh/config
 		chmod 600 ~/.ssh/authorized_keys
 
