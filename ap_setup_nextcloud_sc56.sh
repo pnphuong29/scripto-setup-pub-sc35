@@ -47,7 +47,7 @@ time {
 
 	read -p "Please press [y] after you added private key: "
 	if [[ "${REPLY}" == 'y' ]]; then
-		cp -f ap_ssh.config ~/.ssh/config
+		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh.config" >~/.ssh/config
 		chmod 600 ~/.ssh/config
 		chmod 600 ~/.ssh/authorized_keys
 

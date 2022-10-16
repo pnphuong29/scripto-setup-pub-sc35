@@ -29,7 +29,7 @@ time {
 		ln -s ~/pnphuong29/one-drive/pnphuong29/OneDrive/keys/ap_pnphuong29.key.priv ~/pnphuong29/keys/ap_pnphuong29.key.priv
 		chmod 400 *.key.priv
 
-		cp -f ap_ssh.config ~/.ssh/config
+		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh.config" >~/.ssh/config
 		chmod 600 ~/.ssh/config
 		chmod 600 ~/.ssh/authorized_keys
 
