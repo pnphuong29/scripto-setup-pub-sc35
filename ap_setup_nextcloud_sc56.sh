@@ -37,13 +37,13 @@ time {
 	# Configure ssh
 	echo "Configuring ssh"
 	mkdir -p ~/.ssh
-	mkdir -p ~/pnphuong29/keys
-	chmod 700 ~/pnphuong29/keys
+	mkdir -p ~/pnphuong29/secrets
+	chmod 700 ~/pnphuong29/secrets
 
-	touch ~/pnphuong29/keys/ap_pnphuong29.key.priv
-	chmod 600 ~/pnphuong29/keys/ap_pnphuong29.key.priv
-	touch ~/pnphuong29/keys/ap_rsync_user.passwd
-	chmod 600 ~/pnphuong29/keys/ap_rsync_user.passwd
+	touch ~/pnphuong29/secrets/ap_pnphuong29.key.priv
+	chmod 600 ~/pnphuong29/secrets/ap_pnphuong29.key.priv
+	touch ~/pnphuong29/secrets/ap_rsync_user.passwd
+	chmod 600 ~/pnphuong29/secrets/ap_rsync_user.passwd
 
 	read -p "Please press [y] after you added private key: "
 	if [[ "${REPLY}" == 'y' ]]; then
