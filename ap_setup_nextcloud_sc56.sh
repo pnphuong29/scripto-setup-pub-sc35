@@ -68,11 +68,11 @@ time {
 		git clone "git@p29-github:pnphuong29/${ap_prj_scripts_name}.git"
 
 		# NC7
-		# ap_prj_scripts_name="ap-nextcloud-nc7"
-		# export AP_PRJ_NC7_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
+		ap_prj_scripts_name="nextcloud-nc7"
+		export AP_PRJ_NC7_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
 		# rm -rf "${AP_PRJ_NC7_DIR}"
-		# cd "${AP_GH_P29_DIR}"
-		# git clone "git@p29-github:pnphuong29/${ap_prj_scripts_name}.git"
+		cd "${AP_GH_P29_DIR}"
+		git clone "git@p29-github:pnphuong29/${ap_prj_scripts_name}.git"
 
 		# Setup apps
 		echo "Installing vendors"
