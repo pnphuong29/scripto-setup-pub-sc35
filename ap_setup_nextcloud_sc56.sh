@@ -68,4 +68,6 @@ time {
 	echo "Installing vendors"
 	source "${AP_PRJ_SCRIPTS_DIR}/ap_setup_vendors.sh"
 	source "${AP_PRJ_SCRIPTS_DIR}/ap_master.sh"
+
+	echo "time source /home/vagrant/pnphuong29/projects/p29-github/pnphuong29/ap-scripts-nextcloud-sc56/ap_master.sh" >>~/.bashrc
 }
