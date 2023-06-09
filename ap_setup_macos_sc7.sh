@@ -23,13 +23,10 @@ time {
 	touch ~/pnphuong29/secrets/ap_rsync_user.passwd
 	chmod 600 ~/pnphuong29/secrets/ap_rsync_user.passwd
 
-	echo "You should install OneDrive on your local machine now"
-	read -p "Please press [y] after you added private key: "
-	if [[ "${REPLY}" == 'y' ]]; then
-		ln -s ~/pnphuong29/nextcloud/pnphuong29/secrets/ap_pnphuong29.key.priv ~/pnphuong29/secrets/ap_pnphuong29.key.priv
-		chmod 400 *.key.priv
-
-		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh.config" >~/.ssh/config
+	if [[ ! -f ~/pnphuong29/secrets/ap_pnphuong29.key.priv ]]; then
+		echo "You should add private key to clone repos"
+	else
+		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh_sc7.config" >~/.ssh/config
 		chmod 600 ~/.ssh/config
 		chmod 600 ~/.ssh/authorized_keys
 
