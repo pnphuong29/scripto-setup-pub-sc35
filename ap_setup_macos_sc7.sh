@@ -21,7 +21,8 @@ time {
 	chmod 700 ~/pnphuong29/secrets
 
 	touch ~/pnphuong29/secrets/ap_rsync_user.passwd
-	chmod 600 ~/pnphuong29/secrets/ap_rsync_user.passwd
+	touch ~/pnphuong29/secrets/ap_pnphuong29.key.priv
+	chmod 600 ~/pnphuong29/secrets/*
 
 	if [[ ! -f ~/pnphuong29/secrets/ap_pnphuong29.key.priv ]]; then
 		echo "You should add private key to clone repos"
