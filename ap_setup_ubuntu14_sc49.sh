@@ -31,36 +31,24 @@ time {
 	sudo apt update
 	sudo apt install -y git wget curl vim ssh
 
-	# If current bash version < 5.x then uncomment the below lines to install bash
-	# ap_setup_bash()
+	export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/p29-github/pnphuong29"
+	mkdir -p "${AP_GH_P29_DIR}"
 
-	# Configure ssh
-	echo "Configuring ssh"
-	mkdir -p ~/.ssh
+	# SC28
+	export AP_PRJ_SC28_DIR="${AP_GH_P29_DIR}/ap-scripts-common-sc28"
+	rm -rf "${AP_PRJ_SC28_DIR}"
+	cd "${AP_GH_P29_DIR}"
+	git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
 
-	read -p "Please press [y] after you added private key: "
-	if [[ "${REPLY}" == 'y' ]]; then
-		chmod 600 ~/.ssh/authorized_keys
+	# SC49
+	ap_prj_scripts_name="ap-scripts-ubuntu-server-sc49"
+	export AP_PRJ_SCRIPTS_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
+	rm -rf "${AP_PRJ_SCRIPTS_DIR}"
+	cd "${AP_GH_P29_DIR}"
+	git clone "https://github.com/pnphuong29/${ap_prj_scripts_name}.git"
 
-		export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/p29-github/pnphuong29"
-		mkdir -p "${AP_GH_P29_DIR}"
-
-		# SC28
-		export AP_PRJ_SC28_DIR="${AP_GH_P29_DIR}/ap-scripts-common-sc28"
-		rm -rf "${AP_PRJ_SC28_DIR}"
-		cd "${AP_GH_P29_DIR}"
-		git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
-
-		# SC49
-		ap_prj_scripts_name="ap-scripts-ubuntu-server-sc49"
-		export AP_PRJ_SCRIPTS_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
-		rm -rf "${AP_PRJ_SCRIPTS_DIR}"
-		cd "${AP_GH_P29_DIR}"
-		git clone "https://github.com/pnphuong29/${ap_prj_scripts_name}.git"
-
-		# Setup apps
-		echo "Installing vendors"
-		source "${AP_PRJ_SCRIPTS_DIR}/ap_setup_vendors.sh"
-		source "${AP_PRJ_SCRIPTS_DIR}/ap_master.sh"
-	fi
+	# Setup apps
+	echo "Installing vendors"
+	source "${AP_PRJ_SCRIPTS_DIR}/ap_setup_vendors.sh"
+	source "${AP_PRJ_SCRIPTS_DIR}/ap_master.sh"
 }
