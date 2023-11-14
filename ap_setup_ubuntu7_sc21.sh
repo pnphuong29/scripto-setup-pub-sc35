@@ -28,9 +28,9 @@ time {
 	echo "Installing essential and required apps"
 
 	sudo apt update
-	sudo apt install -y add-apt-repository
-	sudo add-apt-repository -y ppa:git-core/ppa
+	sudo apt install -y software-properties-common
 
+	sudo add-apt-repository -y ppa:git-core/ppa
 	sudo apt update
 	sudo apt install -y git wget curl vim ssh
 
