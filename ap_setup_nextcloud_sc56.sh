@@ -34,49 +34,32 @@ time {
 	# If current bash version < 5.x then uncomment the below lines to install bash
 	# ap_setup_bash()
 
-	# Configure ssh
-	echo "Configuring ssh"
-	mkdir -p ~/.ssh
-	mkdir -p ~/pnphuong29/secrets
-	chmod 700 ~/pnphuong29/secrets
+	curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh.config" >~/.ssh/config
+	chmod 600 ~/.ssh/config
+	chmod 600 ~/.ssh/authorized_keys
 
-	touch ~/pnphuong29/secrets/ap_pnphuong29.key.priv
-	chmod 600 ~/pnphuong29/secrets/ap_pnphuong29.key.priv
-	touch ~/pnphuong29/secrets/ap_rsync_user.passwd
-	chmod 600 ~/pnphuong29/secrets/ap_rsync_user.passwd
+	export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/p29-github/pnphuong29"
+	mkdir -p "${AP_GH_P29_DIR}"
 
-	read -p "Please press [y] after you added private key: "
-	if [[ "${REPLY}" == 'y' ]]; then
-		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh.config" >~/.ssh/config
-		chmod 600 ~/.ssh/config
-		chmod 600 ~/.ssh/authorized_keys
+	# SC28
+	export AP_PRJ_SC28_DIR="${AP_GH_P29_DIR}/ap-scripts-common-sc28"
+	rm -rf "${AP_PRJ_SC28_DIR}"
+	cd "${AP_GH_P29_DIR}"
+	git clone https://github.com/pnphuong29/ap-scripts-common-sc28.git
+	# git clone "git@p29-github:pnphuong29/ap-scripts-common-sc28.git"
 
-		export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/p29-github/pnphuong29"
-		mkdir -p "${AP_GH_P29_DIR}"
+	# SC56
+	ap_prj_scripts_name="ap-scripts-nextcloud-sc56"
+	export AP_PRJ_SCRIPTS_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
+	rm -rf "${AP_PRJ_SCRIPTS_DIR}"
+	cd "${AP_GH_P29_DIR}"
+	git clone https://github.com/pnphuong29/ap-scripts-nextcloud-sc56.git
+	# git clone "git@p29-github:pnphuong29/${ap_prj_scripts_name}.git"
 
-		# SC28
-		export AP_PRJ_SC28_DIR="${AP_GH_P29_DIR}/ap-scripts-common-sc28"
-		rm -rf "${AP_PRJ_SC28_DIR}"
-		cd "${AP_GH_P29_DIR}"
-		git clone "git@p29-github:pnphuong29/ap-scripts-common-sc28.git"
+	# Setup apps
+	echo "Installing vendors"
+	source "${AP_PRJ_SCRIPTS_DIR}/ap_setup_vendors.sh"
+	source "${AP_PRJ_SCRIPTS_DIR}/ap_master.sh"
 
-		# SC56
-		ap_prj_scripts_name="ap-scripts-nextcloud-sc56"
-		export AP_PRJ_SCRIPTS_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
-		rm -rf "${AP_PRJ_SCRIPTS_DIR}"
-		cd "${AP_GH_P29_DIR}"
-		git clone "git@p29-github:pnphuong29/${ap_prj_scripts_name}.git"
-
-		# NC7
-		ap_prj_scripts_name="nextcloud-nc7"
-		export AP_PRJ_NC7_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
-		# rm -rf "${AP_PRJ_NC7_DIR}"
-		cd "${AP_GH_P29_DIR}"
-		git clone "git@p29-github:pnphuong29/${ap_prj_scripts_name}.git"
-
-		# Setup apps
-		echo "Installing vendors"
-		source "${AP_PRJ_SCRIPTS_DIR}/ap_setup_vendors.sh"
-		source "${AP_PRJ_SCRIPTS_DIR}/ap_master.sh"
-	fi
+	echo "time source /home/vagrant/pnphuong29/projects/p29-github/pnphuong29/ap-scripts-nextcloud-sc56/ap_master.sh" >>~/.bashrc
 }

@@ -52,7 +52,7 @@ time {
 		git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
 
 		# SC49
-		ap_prj_scripts_name="ap-scripts-ubuntu14-sc49"
+		ap_prj_scripts_name="ap-scripts-ubuntu-server-sc49"
 		export AP_PRJ_SCRIPTS_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
 		rm -rf "${AP_PRJ_SCRIPTS_DIR}"
 		cd "${AP_GH_P29_DIR}"
