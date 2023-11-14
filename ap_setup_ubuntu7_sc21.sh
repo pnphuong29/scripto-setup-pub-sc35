@@ -26,6 +26,9 @@ TIMEFORMAT="It took [%R] seconds to execute this script"
 time {
 	# Install essential and required apps
 	echo "Installing essential and required apps"
+
+	sudo apt update
+	sudo apt install -y add-apt-repository
 	sudo add-apt-repository -y ppa:git-core/ppa
 
 	sudo apt update
@@ -47,10 +50,10 @@ time {
 
 	read -p "Please press [y] after you added private key: "
 	if [[ "${REPLY}" == 'y' ]]; then
- 		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh.config" >~/.ssh/config
+		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh.config" >~/.ssh/config
 		chmod 600 ~/.ssh/config
 		chmod 600 ~/.ssh/authorized_keys
-  
+
 		export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/p29-github/pnphuong29"
 		mkdir -p "${AP_GH_P29_DIR}"
 

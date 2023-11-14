@@ -26,6 +26,9 @@ TIMEFORMAT="It took [%R] seconds to execute this script"
 time {
 	# Install essential and required apps
 	echo "Installing essential and required apps"
+
+	sudo apt update
+	sudo apt install -y add-apt-repository
 	sudo add-apt-repository -y ppa:git-core/ppa
 
 	sudo apt update
