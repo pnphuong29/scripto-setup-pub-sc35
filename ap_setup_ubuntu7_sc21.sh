@@ -70,6 +70,12 @@ time {
 		cd "${AP_GH_P29_DIR}"
 		git clone "git@p29-github:pnphuong29/${ap_prj_scripts_name}.git"
 
+		# SSL7
+		export AP_PRJ_SSL7_DIR="${AP_GH_P29_DIR}/ap-sslcerts-ssl7"
+		rm -rf "${AP_PRJ_SSL7_DIR}"
+		cd "${AP_GH_P29_DIR}"
+		git clone "git@p29-github:pnphuong29/ap-sslcerts-ssl7.git"
+
 		# Setup apps
 		echo "Installing vendors"
 		source "${AP_PRJ_SCRIPTS_DIR}/ap_setup_vendors.sh"
