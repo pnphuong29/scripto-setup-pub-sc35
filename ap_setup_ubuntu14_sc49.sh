@@ -34,6 +34,9 @@ time {
 	sudo apt update
 	sudo apt install -y git wget curl vim ssh
 
+	# If current bash version < 5.x then uncomment the below lines to install bash
+	# ap_setup_bash()
+
 	export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/p29-github/pnphuong29"
 	mkdir -p "${AP_GH_P29_DIR}"
 
@@ -54,8 +57,8 @@ time {
 	export AP_PRJ_SSL7_DIR="${AP_GH_P29_DIR}/ap-sslcerts-ssl7"
 	rm -rf "${AP_PRJ_SSL7_DIR}"
 	cd "${AP_GH_P29_DIR}"
-	git clone "git@p29-github:pnphuong29/ap-sslcerts-ssl7.git"
-	
+	git clone "https://github.com/pnphuong29/ap-sslcerts-ssl7.git"
+
 	# Setup apps
 	echo "Installing vendors"
 	source "${AP_PRJ_SCRIPTS_DIR}/ap_setup_vendors.sh"
