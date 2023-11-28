@@ -7,12 +7,12 @@
 ap_setup_bash() {
 	# Download bash source code
 	ap_bash_version='5.1.16'
-	cd ~/Download
+	cd "${HOME}/Download"
 	curl -LO "https://mirror.downloadvn.com/gnu/bash/bash-${ap_bash_version}.tar.gz"
 	tar -zxf "bash-${ap_bash_version}.tar.gz"
 
 	# Install bash
-	export AP_VENDORS_BASH_DIR="${HOME}/pnphuong29/software/bash/bash-${ap_bash_version}"
+	export AP_VENDORS_BASH_DIR="${HOME}/scripto/software/bash/bash-${ap_bash_version}"
 	cd "bash-${ap_bash_version}"
 	./configure --prefix="${AP_VENDORS_BASH_DIR}"
 	make install
@@ -39,22 +39,22 @@ time {
 
 	# Configure ssh
 	echo "Configuring ssh"
-	mkdir -p ~/.ssh
-	mkdir -p ~/pnphuong29/secrets
-	chmod 700 ~/pnphuong29/secrets
+	mkdir -p "${HOME}/.ssh"
+	mkdir -p "${HOME}/scripto/secrets"
+	chmod 700 "${HOME}/scripto/secrets"
 
-	touch ~/pnphuong29/secrets/ap_pnphuong29.key.priv
-	chmod 600 ~/pnphuong29/secrets/ap_pnphuong29.key.priv
-	touch ~/pnphuong29/secrets/ap_rsync_user.passwd
-	chmod 600 ~/pnphuong29/secrets/ap_rsync_user.passwd
+	touch "${HOME}/scripto/secrets/ap_pnphuong29.key.priv"
+	chmod 600 "${HOME}/scripto/secrets/ap_pnphuong29.key.priv"
+	touch "${HOME}/scripto/secrets/ap_rsync_user.passwd"
+	chmod 600 "${HOME}/scripto/secrets/ap_rsync_user.passwd"
 
-	read -p "Please press [y] after you added private key: "
+	read -r -p "Please press [y] after you added private key: "
 	if [[ "${REPLY}" == 'y' ]]; then
-		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh.config" >~/.ssh/config
-		chmod 600 ~/.ssh/config
-		chmod 600 ~/.ssh/authorized_keys
+		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh.config" >"${HOME}/.ssh/config"
+		chmod 600 "${HOME}/.ssh/config"
+		chmod 600 "${HOME}/.ssh/authorized_keys"
 
-		export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/p29-github/pnphuong29"
+		export AP_GH_P29_DIR="${HOME}/scripto/projects/p29-github/pnphuong29"
 		mkdir -p "${AP_GH_P29_DIR}"
 
 		# SC28

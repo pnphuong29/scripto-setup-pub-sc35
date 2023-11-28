@@ -7,17 +7,17 @@
 ap_setup_bash() {
 	# Download bash source code
 	ap_bash_version='5.1.16'
-	cd ~/Download
+	cd "${HOME}/Download"
 	curl -LO "https://mirror.downloadvn.com/gnu/bash/bash-${ap_bash_version}.tar.gz"
 	tar -zxf "bash-${ap_bash_version}.tar.gz"
 
 	# Install bash
-	export AP_VENDORS_BASH_DIR="${HOME}/pnphuong29/software/bash/bash-${ap_bash_version}"
+	export AP_VENDORS_BASH_DIR="${HOME}/scripto/software/bash/bash-${ap_bash_version}"
 	cd "bash-${ap_bash_version}"
 	./configure --prefix="${AP_VENDORS_BASH_DIR}"
 	make install
 
-	sudo echo "${AP_VENDORS_BASH_DIR}/bin/bash" >>/etc/shells
+	echo "${AP_VENDORS_BASH_DIR}/bin/bash" | sudo tee -a /etc/shells
 	chsh -s "${AP_VENDORS_BASH_DIR}/bin/bash"
 }
 
@@ -37,7 +37,7 @@ time {
 	# If current bash version < 5.x then uncomment the below lines to install bash
 	# ap_setup_bash()
 
-	export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/p29-github/pnphuong29"
+	export AP_GH_P29_DIR="${HOME}/scripto/projects/p29-github/pnphuong29"
 	mkdir -p "${AP_GH_P29_DIR}"
 
 	# SC28
