@@ -12,7 +12,7 @@ ap_setup_bash() {
 	tar -zxf "bash-${ap_bash_version}.tar.gz"
 
 	# Install bash
-	export AP_VENDORS_BASH_DIR="${HOME}/scripto/software/bash/bash-${ap_bash_version}"
+	export AP_VENDORS_BASH_DIR="${HOME}/scripto-data/software/bash/bash-${ap_bash_version}"
 	cd "bash-${ap_bash_version}"
 	./configure --prefix="${AP_VENDORS_BASH_DIR}"
 	make install
@@ -21,7 +21,7 @@ ap_setup_bash() {
 	chsh -s "${AP_VENDORS_BASH_DIR}/bin/bash"
 }
 
-# @#bash-snippets $$ measure execution time
+# @#bashsn $$ measure execution time
 TIMEFORMAT="It took [%R] seconds to execute this script"
 time {
 	# Install essential and required apps
@@ -37,19 +37,19 @@ time {
 	# If current bash version < 5.x then uncomment the below lines to install bash
 	# ap_setup_bash()
 
-	export AP_GH_P29_DIR="${HOME}/scripto/projects/p29-github/pnphuong29"
+	export AP_GH_P29_DIR="${HOME}/scripto-data/projects/github.com/pnphuong29"
 	mkdir -p "${AP_GH_P29_DIR}"
 
 	# SC28
 	export AP_PRJ_SC28_DIR="${AP_GH_P29_DIR}/ap-scripts-common-sc28"
-	rm -rf "${AP_PRJ_SC28_DIR}"
+	rm -rf "${AP_SCRIPTO_COMMON_DIR}"
 	cd "${AP_GH_P29_DIR}"
 	git clone "https://github.com/pnphuong29/ap-scripts-common-sc28.git"
 
 	# SC49
 	ap_prj_scripts_name="ap-scripts-ubuntu-server-sc49"
 	export AP_PRJ_SCRIPTS_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
-	rm -rf "${AP_PRJ_SCRIPTS_DIR}"
+	rm -rf "${AP_SCRIPTO_MAIN_DIR}"
 	cd "${AP_GH_P29_DIR}"
 	git clone "https://github.com/pnphuong29/${ap_prj_scripts_name}.git"
 
@@ -61,6 +61,6 @@ time {
 
 	# Setup apps
 	echo "Installing vendors"
-	source "${AP_PRJ_SCRIPTS_DIR}/ap_setup_vendors.sh"
-	source "${AP_PRJ_SCRIPTS_DIR}/ap_master.sh"
+	source "${AP_SCRIPTO_MAIN_DIR}/ap_setup_vendors.sh"
+	source "${AP_SCRIPTO_MAIN_DIR}/ap_master.sh"
 }
