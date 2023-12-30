@@ -43,7 +43,7 @@ time {
 
 	# SC28
 	export AP_PRJ_SC28_DIR="${AP_GH_P29_DIR}/ap-scripts-common-sc28"
-	rm -rf "${AP_SCRIPTO_COMMON_DIR}"
+	rm -rf "${HOME}/scripto-common"
 	cd "${AP_GH_P29_DIR}"
 	git clone https://github.com/pnphuong29/ap-scripts-common-sc28.git
 	# git clone "git@github.com:pnphuong29/ap-scripts-common-sc28.git"
@@ -51,15 +51,15 @@ time {
 	# SC56
 	ap_prj_scripts_name="ap-scripts-nextcloud-sc56"
 	export AP_PRJ_SCRIPTS_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
-	rm -rf "${AP_SCRIPTO_MAIN_DIR}"
+	rm -rf "${HOME}/scripto-main"
 	cd "${AP_GH_P29_DIR}"
 	git clone https://github.com/pnphuong29/ap-scripts-nextcloud-sc56.git
 	# git clone "git@github.com:pnphuong29/${ap_prj_scripts_name}.git"
 
 	# Setup apps
 	echo "Installing vendors"
-	source "${AP_SCRIPTO_MAIN_DIR}/ap_setup_vendors.sh"
-	source "${AP_SCRIPTO_MAIN_DIR}/ap_master.sh"
+	source "${HOME}/scripto-main/ap_setup_vendors.sh"
+	source "${HOME}/scripto-main/ap_master.sh"
 
 	echo "time source /home/vagrant/pnphuong29/projects/github.com/pnphuong29/ap-scripts-nextcloud-sc56/ap_master.sh" >>~/.bashrc
 }
