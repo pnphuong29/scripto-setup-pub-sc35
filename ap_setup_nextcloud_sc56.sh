@@ -50,7 +50,7 @@ time {
 
 	# SC56
 	ap_prj_scripts_name="ap-scripts-nextcloud-sc56"
-	export AP_PRJ_SCRIPTS_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
+	export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
 	rm -rf "${HOME}/scripto-main"
 	cd "${AP_GH_P29_DIR}"
 	git clone https://github.com/pnphuong29/ap-scripts-nextcloud-sc56.git

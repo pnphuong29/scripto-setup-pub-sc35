@@ -65,7 +65,7 @@ time {
 
 		# SC21
 		ap_prj_scripts_name="ap-scripts-ubuntu7-sc21"
-		export AP_PRJ_SCRIPTS_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
+		export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
 		rm -rf "${HOME}/scripto-main"
 		cd "${AP_GH_P29_DIR}"
 		git clone "git@github.com:pnphuong29/${ap_prj_scripts_name}.git"
