@@ -1,0 +1,87 @@
+# Notes
+# - This script should be used to setup Ubuntu Server >= 22.04
+# Usage
+# - Download this script into any location owned by current user
+# - Run the command `source script_file_name.sh`
+
+ap_setup_bash() {
+	# Download bash source code
+	ap_bash_version='5.1.16'
+	cd "${HOME}/Download"
+	curl -LO "https://mirror.downloadvn.com/gnu/bash/bash-${ap_bash_version}.tar.gz"
+	tar -zxf "bash-${ap_bash_version}.tar.gz"
+
+	# Install bash
+	export AP_VENDORS_BASH_DIR="${HOME}/scripto-data/software/bash/bash-${ap_bash_version}"
+	cd "bash-${ap_bash_version}"
+	./configure --prefix="${AP_VENDORS_BASH_DIR}"
+	make install
+
+	echo "${AP_VENDORS_BASH_DIR}/bin/bash" | sudo tee -a /etc/shells
+	chsh -s "${AP_VENDORS_BASH_DIR}/bin/bash"
+}
+
+# @#bashsn $$ measure execution time
+TIMEFORMAT="It took [%R] seconds to execute this script"
+time {
+	# Install essential and required apps
+	echo "Installing essential and required apps"
+
+	sudo apt update
+	sudo apt install -y software-properties-common
+
+	sudo add-apt-repository -y ppa:git-core/ppa
+	sudo apt update
+	sudo apt install -y git wget curl vim ssh
+
+	# If current bash version < 5.x then uncomment the below lines to install bash
+	# ap_setup_bash()
+
+	export AP_GH_P29_DIR="${HOME}/scripto-data/projects/github.com/pnphuong29"
+	mkdir -p "${AP_GH_P29_DIR}"
+
+	# SC108
+	ap_prj_scripto="scripto-pub-sc108"
+	export AP_PRJ_SC108_DIR="${AP_GH_P29_DIR}/${ap_prj_scripto}"
+	cd "${AP_GH_P29_DIR}"
+	git clone "https://github.com/pnphuong29/${ap_prj_scripto}.git"
+
+	rm -rf "${HOME}/scripto"
+	ln -s "${AP_PRJ_SC108_DIR}" ~/scripto
+
+	# SC1
+	ap_prj_scripts_share="ap-scripts-share-sc1"
+	export AP_PRJ_SC1_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_share}"
+	cd "${AP_GH_P29_DIR}"
+	git clone "https://github.com/pnphuong29/${ap_prj_scripts_share}.git"
+
+	rm -rf "${HOME}/scripto-share"
+	ln -s "${AP_PRJ_SC1_DIR}" ~/scripto-share
+
+	# SC77
+	ap_prj_scripts_common="ap-scripts-7s-common-sc77"
+	export AP_PRJ_SC77_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_common}"
+	cd "${AP_GH_P29_DIR}"
+	git clone "https://github.com/pnphuong29/${ap_prj_scripts_common}.git"
+
+	rm -rf "${HOME}/scripto-common"
+	ln -s "${AP_PRJ_SC77_DIR}" ~/scripto-common
+
+	# SC84
+	ap_prj_scripts_main="ap-scripts-7s-main-sc84"
+	export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_main}"
+	cd "${AP_GH_P29_DIR}"
+	git clone "https://github.com/pnphuong29/${ap_prj_scripts_main}.git"
+
+	rm -rf "${HOME}/scripto-main"
+	ln -s "${AP_PRJ_SCRIPTS_MAIN_DIR}" ~/scripto-main
+
+	# Update ~/.bashrc
+	echo "" >>~/.bashrc
+	echo "Execute [~/.bashrc]" >>~/.bashrc
+	echo "time source ~/scripto-main/ap_master.sh" >>~/.bashrc
+
+	# Setup apps
+	echo "Installing vendors"
+	source ~/scripto-main/ap_master.sh
+}
