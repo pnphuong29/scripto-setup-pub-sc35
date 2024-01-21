@@ -38,7 +38,7 @@ time {
 	ap_prj_scripto="scripto-pub-sc108"
 	export AP_PRJ_SC108_DIR="${AP_GH_P29_DIR}/${ap_prj_scripto}"
 	cd "${AP_GH_P29_DIR}"
-	git clone "https://github.com/pnphuong29/${ap_prj_scripto}.git"
+	git clone "git@github.com:pnphuong29/${ap_prj_scripto}.git"
 
 	rm -rf "${HOME}/scripto"
 	ln -s "${AP_PRJ_SC108_DIR}" ~/scripto
@@ -47,7 +47,7 @@ time {
 	ap_prj_scripts_share="ap-scripts-share-sc1"
 	export AP_PRJ_SC1_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_share}"
 	cd "${AP_GH_P29_DIR}"
-	git clone "https://github.com/pnphuong29/${ap_prj_scripts_share}.git"
+	git clone "git@github.com:pnphuong29/${ap_prj_scripts_share}.git"
 
 	rm -rf "${HOME}/scripto-share"
 	ln -s "${AP_PRJ_SC1_DIR}" ~/scripto-share
@@ -56,7 +56,7 @@ time {
 	ap_prj_scripts_common="ap-scripts-7s-common-sc77"
 	export AP_PRJ_SC77_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_common}"
 	cd "${AP_GH_P29_DIR}"
-	git clone "https://github.com/pnphuong29/${ap_prj_scripts_common}.git"
+	git clone "git@github.com:pnphuong29/${ap_prj_scripts_common}.git"
 
 	rm -rf "${HOME}/scripto-common"
 	ln -s "${AP_PRJ_SC77_DIR}" ~/scripto-common
@@ -65,7 +65,7 @@ time {
 	ap_prj_scripts_main="ap-scripts-7s-main-sc84"
 	export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_main}"
 	cd "${AP_GH_P29_DIR}"
-	git clone "https://github.com/pnphuong29/${ap_prj_scripts_main}.git"
+	git clone "git@github.com:pnphuong29/${ap_prj_scripts_main}.git"
 
 	rm -rf "${HOME}/scripto-main"
 	ln -s "${AP_PRJ_SCRIPTS_MAIN_DIR}" ~/scripto-main
