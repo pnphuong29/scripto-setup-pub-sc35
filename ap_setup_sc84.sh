@@ -1,9 +1,3 @@
-# Notes
-# - This script should be used to setup Ubuntu Server >= 22.04
-# Usage
-# - Download this script into any location owned by current user
-# - Run the command `source script_file_name.sh`
-
 ap_setup_bash() {
 	# Download bash source code
 	ap_bash_version='5.1.16'
