@@ -1,9 +1,3 @@
-# Notes
-# - This script should be used to setup Ubuntu Desktop >= 22.04
-# Usage
-# - Download this script into any location owned by current user
-# - Run the command `source script_file_name.sh`
-
 ap_setup_bash() {
 	# Download bash source code
 	ap_bash_version='5.1.16'
@@ -39,46 +33,69 @@ time {
 
 	# Configure ssh
 	echo "Configuring ssh"
-	mkdir -p "${HOME}/.ssh"
-	mkdir -p "${HOME}/scripto-data/secrets"
-	chmod 700 "${HOME}/scripto-data/secrets"
+	mkdir -p ~/.ssh
+	touch ~/.ssh/config
 
-	touch "${HOME}/scripto-data/secrets/ap_pnphuong29.key.priv"
-	chmod 600 "${HOME}/scripto-data/secrets/ap_pnphuong29.key.priv"
-	touch "${HOME}/scripto-data/secrets/ap_rsync_user.passwd"
-	chmod 600 "${HOME}/scripto-data/secrets/ap_rsync_user.passwd"
+	mkdir -p ~/scripto-data/secrets
+	touch ~/scripto-data/secrets/ap_pnphuong29.key.priv
+	chmod 600 ~/scripto-data/secrets/*
 
-	read -r -p "Please press [y] after you added private key: "
-	if [[ "${REPLY}" == 'y' ]]; then
-		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh.config" >"${HOME}/.ssh/config"
-		chmod 600 "${HOME}/.ssh/config"
-		chmod 600 "${HOME}/.ssh/authorized_keys"
-
+	if [[ ! -f ~/secrets/ap_pnphuong29.key.priv ]]; then
+		echo "You should configure [~/.ssh/config] file and add private key to clone repos"
+	else
 		export AP_GH_P29_DIR="${HOME}/scripto-data/projects/github.com/pnphuong29"
 		mkdir -p "${AP_GH_P29_DIR}"
 
-		# SC28
-		export AP_PRJ_SC28_DIR="${AP_GH_P29_DIR}/ap-scripts-common-sc28"
-		rm -rf "${HOME}/scripto-common"
+		# SC108
+		ap_prj_scripto="scripto-pub-sc108"
+		export AP_PRJ_SC108_DIR="${AP_GH_P29_DIR}/${ap_prj_scripto}"
 		cd "${AP_GH_P29_DIR}"
-		git clone "git@github.com:pnphuong29/ap-scripts-common-sc28.git"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripto}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripto}.git"
+
+		rm -rf "${HOME}/scripto"
+		ln -s "${AP_PRJ_SC108_DIR}" ~/scripto
+
+		# SC1
+		ap_prj_scripts_share="ap-scripts-share-sc1"
+		export AP_PRJ_SC1_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_share}"
+		cd "${AP_GH_P29_DIR}"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_share}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripts_share}.git"
+
+		rm -rf "${HOME}/scripto-share"
+		ln -s "${AP_PRJ_SC1_DIR}" ~/scripto-share
+
+		# SC28
+		ap_prj_scripts_common="ap-scripts-common-sc28"
+		export AP_PRJ_SC28_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_common}"
+		cd "${AP_GH_P29_DIR}"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_common}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripts_common}.git"
+
+		rm -rf "${HOME}/scripto-common"
+		ln -s "${AP_PRJ_SC28_DIR}" ~/scripto-common
 
 		# SC21
-		ap_prj_scripts_name="ap-scripts-ubuntu7-sc21"
-		export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
-		rm -rf "${HOME}/scripto-main"
+		ap_prj_scripts_main="ap-scripts-ubuntu7-sc21"
+		export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_main}"
 		cd "${AP_GH_P29_DIR}"
-		git clone "git@github.com:pnphuong29/${ap_prj_scripts_name}.git"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_main}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripts_main}.git"
 
-		# SSL7
-		export AP_PRJ_SSL7_DIR="${AP_GH_P29_DIR}/ap-sslcerts-ssl7"
-		rm -rf "${AP_PRJ_SSL7_DIR}"
-		cd "${AP_GH_P29_DIR}"
-		git clone "git@github.com:pnphuong29/ap-sslcerts-ssl7.git"
+		rm -rf "${HOME}/scripto-main"
+		ln -s "${AP_PRJ_SCRIPTS_MAIN_DIR}" ~/scripto-main
+
+		# Update ~/.bashrc
+		if ! grep scripto-main ~/.bashrc &>/dev/null; then
+			echo "" >>~/.bashrc
+			echo 'echo "Execute [~/.bashrc]"' >>~/.bashrc
+			echo "time source ~/scripto-main/ap_master.sh" >>~/.bashrc
+		fi
 
 		# Setup apps
 		echo "Installing vendors"
-		source "${HOME}/scripto-main/ap_setup_vendors.sh"
-		source "${HOME}/scripto-main/ap_master.sh"
+		source ~/scripto-main/ap_master.sh
+		@setupvendorpc7
 	fi
 }

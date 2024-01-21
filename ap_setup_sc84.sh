@@ -31,55 +31,71 @@ time {
 	# If current bash version < 5.x then uncomment the below lines to install bash
 	# ap_setup_bash()
 
-	export AP_GH_P29_DIR="${HOME}/scripto-data/projects/github.com/pnphuong29"
-	mkdir -p "${AP_GH_P29_DIR}"
+	# Configure ssh
+	echo "Configuring ssh"
+	mkdir -p ~/.ssh
+	touch ~/.ssh/config
 
-	# SC108
-	ap_prj_scripto="scripto-pub-sc108"
-	export AP_PRJ_SC108_DIR="${AP_GH_P29_DIR}/${ap_prj_scripto}"
-	cd "${AP_GH_P29_DIR}"
-	echo "git clone [git@github.com:pnphuong29/${ap_prj_scripto}.git]"
-	git clone "git@github.com:pnphuong29/${ap_prj_scripto}.git"
+	mkdir -p ~/scripto-data/secrets
+	touch ~/scripto-data/secrets/7s_pnphuong29.key.priv
+	chmod 600 ~/scripto-data/secrets/*
 
-	rm -rf "${HOME}/scripto"
-	ln -s "${AP_PRJ_SC108_DIR}" ~/scripto
+	if [[ ! -f ~/secrets/7s_pnphuong29.key.priv ]]; then
+		echo "You should configure [~/.ssh/config] file and add private key to clone repos"
+	else
+		export AP_GH_P29_DIR="${HOME}/scripto-data/projects/github.com/pnphuong29"
+		mkdir -p "${AP_GH_P29_DIR}"
 
-	# SC1
-	ap_prj_scripts_share="ap-scripts-share-sc1"
-	export AP_PRJ_SC1_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_share}"
-	cd "${AP_GH_P29_DIR}"
-	echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_share}.git]"
-	git clone "git@github.com:pnphuong29/${ap_prj_scripts_share}.git"
+		# SC108
+		ap_prj_scripto="scripto-pub-sc108"
+		export AP_PRJ_SC108_DIR="${AP_GH_P29_DIR}/${ap_prj_scripto}"
+		cd "${AP_GH_P29_DIR}"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripto}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripto}.git"
 
-	rm -rf "${HOME}/scripto-share"
-	ln -s "${AP_PRJ_SC1_DIR}" ~/scripto-share
+		rm -rf "${HOME}/scripto"
+		ln -s "${AP_PRJ_SC108_DIR}" ~/scripto
 
-	# SC77
-	ap_prj_scripts_common="ap-scripts-7s-common-sc77"
-	export AP_PRJ_SC77_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_common}"
-	cd "${AP_GH_P29_DIR}"
-	echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_common}.git]"
-	git clone "git@github.com:pnphuong29/${ap_prj_scripts_common}.git"
+		# SC1
+		ap_prj_scripts_share="ap-scripts-share-sc1"
+		export AP_PRJ_SC1_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_share}"
+		cd "${AP_GH_P29_DIR}"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_share}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripts_share}.git"
 
-	rm -rf "${HOME}/scripto-common"
-	ln -s "${AP_PRJ_SC77_DIR}" ~/scripto-common
+		rm -rf "${HOME}/scripto-share"
+		ln -s "${AP_PRJ_SC1_DIR}" ~/scripto-share
 
-	# SC84
-	ap_prj_scripts_main="ap-scripts-7s-main-sc84"
-	export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_main}"
-	cd "${AP_GH_P29_DIR}"
-	echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_main}.git]"
-	git clone "git@github.com:pnphuong29/${ap_prj_scripts_main}.git"
+		# SC77
+		ap_prj_scripts_common="ap-scripts-7s-common-sc77"
+		export AP_PRJ_SC77_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_common}"
+		cd "${AP_GH_P29_DIR}"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_common}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripts_common}.git"
 
-	rm -rf "${HOME}/scripto-main"
-	ln -s "${AP_PRJ_SCRIPTS_MAIN_DIR}" ~/scripto-main
+		rm -rf "${HOME}/scripto-common"
+		ln -s "${AP_PRJ_SC77_DIR}" ~/scripto-common
 
-	# Update ~/.bashrc
-	echo "" >>~/.bashrc
-	echo "Execute [~/.bashrc]" >>~/.bashrc
-	echo "time source ~/scripto-main/ap_master.sh" >>~/.bashrc
+		# SC84
+		ap_prj_scripts_main="ap-scripts-7s-main-sc84"
+		export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_main}"
+		cd "${AP_GH_P29_DIR}"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_main}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripts_main}.git"
 
-	# Setup apps
-	echo "Installing vendors"
-	source ~/scripto-main/ap_master.sh
+		rm -rf "${HOME}/scripto-main"
+		ln -s "${AP_PRJ_SCRIPTS_MAIN_DIR}" ~/scripto-main
+
+		# Update ~/.bashrc
+		if ! grep scripto-main ~/.bashrc &>/dev/null; then
+			echo "" >>~/.bashrc
+			echo 'echo "Execute [~/.bashrc]"' >>~/.bashrc
+			echo "time source ~/scripto-main/ap_master.sh" >>~/.bashrc
+		fi
+
+		# Setup apps
+		echo "Installing vendors"
+		source ~/scripto-main/ap_master.sh
+		@setupvendor7s
+	fi
 }

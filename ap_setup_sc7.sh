@@ -1,10 +1,3 @@
-# Notes
-# - This script should be used to setup macOS >= 10.15
-# Usage
-# - Download this script into any location owned by current user
-# - Run the command `source script_file_name.sh`
-
-# @#bashsn $$ measure execution time
 TIMEFORMAT="It took [%R] seconds to execute this script"
 time {
 	# Install homebrew
@@ -17,39 +10,68 @@ time {
 	# Configure ssh
 	echo "Configuring ssh"
 	mkdir -p ~/.ssh
-	mkdir -p ~/pnphuong29/secrets
-	chmod 700 ~/pnphuong29/secrets
+	touch ~/.ssh/config
 
-	touch ~/pnphuong29/secrets/ap_rsync_user.passwd
-	touch ~/pnphuong29/secrets/ap_pnphuong29.key.priv
-	chmod 600 ~/pnphuong29/secrets/*
+	mkdir -p ~/scripto-data/secrets
+	touch ~/scripto-data/secrets/ap_pnphuong29.key.priv
+	chmod 600 ~/scripto-data/secrets/*
 
-	if [[ ! -f ~/pnphuong29/secrets/ap_pnphuong29.key.priv ]]; then
-		echo "You should add private key to clone repos"
+	if [[ ! -f ~/secrets/ap_pnphuong29.key.priv ]]; then
+		echo "You should configure [~/.ssh/config] file and add private key to clone repos"
 	else
-		curl -SsL "https://raw.githubusercontent.com/pnphuong29/ap-scripts-init-sc35/master/ap_ssh_sc7.config" >~/.ssh/config
-		chmod 600 ~/.ssh/config
-		chmod 600 ~/.ssh/authorized_keys
-
-		export AP_GH_P29_DIR="${HOME}/pnphuong29/projects/github.com/pnphuong29"
+		export AP_GH_P29_DIR="${HOME}/scripto-data/projects/github.com/pnphuong29"
 		mkdir -p "${AP_GH_P29_DIR}"
 
-		# SC28
-		export AP_PRJ_SC28_DIR="${AP_GH_P29_DIR}/ap-scripts-common-sc28"
-		rm -rf "${HOME}/scripto-common"
+		# SC108
+		ap_prj_scripto="scripto-pub-sc108"
+		export AP_PRJ_SC108_DIR="${AP_GH_P29_DIR}/${ap_prj_scripto}"
 		cd "${AP_GH_P29_DIR}"
-		git clone "git@github.com:pnphuong29/ap-scripts-common-sc28.git"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripto}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripto}.git"
+
+		rm -rf "${HOME}/scripto"
+		ln -s "${AP_PRJ_SC108_DIR}" ~/scripto
+
+		# SC1
+		ap_prj_scripts_share="ap-scripts-share-sc1"
+		export AP_PRJ_SC1_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_share}"
+		cd "${AP_GH_P29_DIR}"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_share}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripts_share}.git"
+
+		rm -rf "${HOME}/scripto-share"
+		ln -s "${AP_PRJ_SC1_DIR}" ~/scripto-share
+
+		# SC28
+		ap_prj_scripts_common="ap-scripts-common-sc28"
+		export AP_PRJ_SC28_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_common}"
+		cd "${AP_GH_P29_DIR}"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_common}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripts_common}.git"
+
+		rm -rf "${HOME}/scripto-common"
+		ln -s "${AP_PRJ_SC28_DIR}" ~/scripto-common
 
 		# SC7
-		ap_prj_scripts_name="ap-scripts-macos-sc7"
-		export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_name}"
-		rm -rf "${HOME}/scripto-main"
+		ap_prj_scripts_main="ap-scripts-macos-sc7"
+		export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_main}"
 		cd "${AP_GH_P29_DIR}"
-		git clone "git@github.com:pnphuong29/${ap_prj_scripts_name}.git"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_main}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripts_main}.git"
+
+		rm -rf "${HOME}/scripto-main"
+		ln -s "${AP_PRJ_SCRIPTS_MAIN_DIR}" ~/scripto-main
+
+		# Update ~/.profile
+		if ! grep scripto-main ~/.profile &>/dev/null; then
+			echo "" >>~/.profile
+			echo 'echo "Execute [~/.profile]"' >>~/.profile
+			echo "time source ~/scripto-main/ap_master.sh" >>~/.profile
+		fi
 
 		# Setup apps
 		echo "Installing vendors"
-		source "${HOME}/scripto-main/ap_setup_vendors.sh"
-		source "${HOME}/scripto-main/ap_master.sh"
+		source ~/scripto-main/ap_master.sh
+		@setupvendormacos
 	fi
 }
