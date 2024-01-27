@@ -76,8 +76,8 @@ time {
 		rm -rf "${HOME}/scripto-common"
 		ln -s "${AP_PRJ_SC77_DIR}" ~/scripto-common
 
-		# SC84
-		ap_prj_scripts_main="ap-scripts-7s-main-sc84"
+		# SC74
+		ap_prj_scripts_main="ap-scripts-7s-main-sc74"
 		export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_main}"
 		cd "${AP_GH_P29_DIR}"
 		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_main}.git]"
