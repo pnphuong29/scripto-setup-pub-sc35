@@ -13,8 +13,7 @@ time {
     touch ~/.ssh/config
 
     mkdir -p ~/secrets
-    touch ~/scripto-data/secrets/ap_pnphuong29.key.priv
-    chmod 750 ~/secrets
+    touch ~/secrets/ap_pnphuong29.key.priv
     chmod 600 ~/secrets/*
 
     if [[ ! -f ~/secrets/ap_pnphuong29.key.priv ]]; then

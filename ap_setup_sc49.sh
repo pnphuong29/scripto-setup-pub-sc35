@@ -36,9 +36,9 @@ time {
 	mkdir -p ~/.ssh
 	touch ~/.ssh/config
 
-	mkdir -p ~/scripto-data/secrets
-	touch ~/scripto-data/secrets/ap_nidnos.key.priv
-	chmod 600 ~/scripto-data/secrets/*
+	mkdir -p ~/secrets
+	touch ~/secrets/ap_nidnos.key.priv
+	chmod 600 ~/secrets/*
 
 	if [[ ! -f ~/secrets/ap_nidnos.key.priv ]]; then
 		echo "You should configure [~/.ssh/config] file and add private key to clone repos"
