@@ -76,7 +76,7 @@ time {
 		rm -rf "${HOME}/scripto-common"
 		ln -s "${AP_PRJ_SC77_DIR}" ~/scripto-common
 
-		# SC74
+		# SC76
 		ap_prj_scripts_main="ap-scripts-7s-main-sc76"
 		export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_main}"
 		cd "${AP_GH_P29_DIR}"
