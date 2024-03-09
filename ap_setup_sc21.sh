@@ -96,6 +96,6 @@ time {
 		# Setup apps
 		echo "Installing vendors"
 		source ~/scripto-main/ap_master.sh
-		@setupvendorpc7
+		apsetupvendorpc7
 	fi
 }
