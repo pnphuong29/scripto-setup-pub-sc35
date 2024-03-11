@@ -76,8 +76,8 @@ time {
 		rm -rf "${HOME}/scripto-common"
 		ln -s "${AP_PRJ_SC28_DIR}" ~/scripto-common
 
-		# SC21
-		ap_prj_scripts_main="ap-scripts-ubuntu7-sc21"
+		# SC49
+		ap_prj_scripts_main="ap-scripts-ubuntu-server-sc49"
 		export AP_PRJ_SCRIPTS_MAIN_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_main}"
 		cd "${AP_GH_P29_DIR}"
 		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_main}.git]"
@@ -96,6 +96,7 @@ time {
 		# Setup apps
 		echo "Installing vendors"
 		source ~/scripto-main/ap_master.sh
-		apsetupvendorpc7
+		apcreatedirstructcore
+		apsetupvendorserver
 	fi
 }
