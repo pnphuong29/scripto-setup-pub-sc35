@@ -35,9 +35,9 @@ time {
 	echo "Configuring ssh"
 	mkdir -p ~/.ssh
 	touch ~/.ssh/config
-	echo <<<-EOF >~/.ssh/config
-	Host *
-	IdentityFile ~/secrets/ap_nidnos.key.priv
+	echo <<-EOF >~/.ssh/config
+		Host *
+		IdentityFile ~/secrets/ap_nidnos.key.priv
 	EOF
 
 	mkdir -p ~/secrets
