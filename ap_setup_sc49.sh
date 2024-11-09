@@ -35,12 +35,16 @@ time {
 	echo "Configuring ssh"
 	mkdir -p ~/.ssh
 	touch ~/.ssh/config
+	echo <<<-EOF >~/.ssh/config
+	Host *
+	IdentityFile ~/secrets/ap_nidnos.key.priv
+	EOF
 
 	mkdir -p ~/secrets
 	touch ~/secrets/ap_nidnos.key.priv
 	chmod 600 ~/secrets/*
 
-	if [[ ! -f ~/secrets/ap_nidnos.key.priv ]]; then
+	if [[ ! -s ~/secrets/ap_nidnos.key.priv ]]; then
 		echo "You should configure [~/.ssh/config] file and add private key to clone repos"
 	else
 		export AP_GH_P29_DIR="${HOME}/scripto-data/projects/github.com/pnphuong29"
