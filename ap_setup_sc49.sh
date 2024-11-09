@@ -90,6 +90,13 @@ time {
 		rm -rf "${HOME}/scripto-main"
 		ln -s "${AP_PRJ_SCRIPTS_MAIN_DIR}" ~/scripto-main
 
+		# SEC2
+		ap_prj_scripts_main="ap-secrets-sec2"
+		export AP_PRJ_SEC2_DIR="${AP_GH_P29_DIR}/${ap_prj_scripts_main}"
+		cd "${AP_GH_P29_DIR}"
+		echo "git clone [git@github.com:pnphuong29/${ap_prj_scripts_main}.git]"
+		git clone "git@github.com:pnphuong29/${ap_prj_scripts_main}.git"
+
 		# Update ~/.bashrc
 		if ! grep scripto-main ~/.bashrc &>/dev/null; then
 			echo "" >>~/.bashrc
