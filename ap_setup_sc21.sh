@@ -40,7 +40,7 @@ time {
 	touch ~/secrets/ap_pnphuong29.key.priv
 	chmod 600 ~/secrets/*
 
-	if [[ ! -f ~/secrets/ap_pnphuong29.key.priv ]]; then
+	if [ ! -f ~/secrets/ap_pnphuong29.key.priv ]; then
 		echo "You should configure [~/.ssh/config] file and add private key to clone repos"
 	else
 		export AP_GH_P29_DIR="${HOME}/scripto-data/projects/github.com/pnphuong29"
@@ -96,6 +96,6 @@ time {
 		# Setup apps
 		echo "Installing vendors"
 		source ~/scripto-main/ap_master.sh
-		apsetupvendorpc7
+		apcreatedirstructdesktop
 	fi
 }
