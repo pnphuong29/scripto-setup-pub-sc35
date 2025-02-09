@@ -10,7 +10,7 @@ charset = utf-8
 # indent_size = 4
 # tab_width defines the width of a tab character when displayed in the editor.
 # tab_width = 4
-insert_final_newline = true
+insert_final_newline = false
 trim_trailing_whitespace = true
 # end_of_line = lf
 
